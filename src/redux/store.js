@@ -2,18 +2,6 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { contactsReducer } from './slices/contactsSlice';
 import { filterReducer } from './slices/filterSlice';
 
-import {
-  FLUSH,
-  PAUSE,
-  PERSIST,
-  PURGE,
-  REGISTER,
-  REHYDRATE,
-  persistReducer,
-  persistStore,
-} from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
-
 /**
  * In store, pentru fiecare "particica" din state-ul aplicatiei, o sa asignam un reducer care se va ocupa exclusiv de logica pentru acea "particica".
  *
@@ -24,27 +12,12 @@ import storage from 'redux-persist/lib/storage';
  * }
  */
 
-const persistConfig = {
-  key: 'root',
-  storage,
-};
 
-const persistedReducer = persistReducer(
-  persistConfig,
-  combineReducers({
-    contacts: contactsReducer,
-    filter: filterReducer,
-  })
-);
-
-export const store = configureStore({
-  reducer: persistedReducer,
-  middleware: getDefaultMiddleware =>
-    getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      },
-    }),
+const rootReducer = combineReducers({
+  contacts: contactsReducer,
+  filter: filterReducer,
 });
 
-export const persistor = persistStore(store);
+export const store = configureStore({
+  reducer: rootReducer,
+});
