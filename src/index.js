@@ -7,6 +7,6 @@ import { store } from './redux/store';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <ReduxProvider store={store}>
-      <App />
+    <App />
   </ReduxProvider>
 );

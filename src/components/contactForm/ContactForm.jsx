@@ -3,15 +3,15 @@ import Button from '../Button';
 import styles from './ContactForm.module.css';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from '../../redux/slices/contactsSlice';
-import { nanoid } from '@reduxjs/toolkit';
+import { addContact } from '../../redux/operations';
+import { selectContacts } from '../../redux/selectors';
 
 const ContactForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
   const dispatch = useDispatch();
-  const contacts = useSelector(state => state.contacts);
+  const contacts = useSelector(selectContacts);
 
   const handleNameChange = evt => {
     // Restrictionarea la text (litere, spații, apostrof și cratimă):
@@ -32,7 +32,6 @@ const ContactForm = () => {
 
   const handleAddButtonClick = () => {
     // Verificăm dacă numele sau numărul există deja în lista de contacte:
-
     const nameExists = contacts.some(
       contact => contact.name.toLowerCase() === name.toLowerCase()
     );
@@ -44,15 +43,12 @@ const ContactForm = () => {
       alert(`${number} is already in contacts!`);
     } else if (name.trim() !== '' && number.trim() !== '') {
       // Adăugăm contactul doar dacă nu există și câmpurile nu sunt goale:
-
       dispatch(
         addContact({
-          id: nanoid(),
           name: name,
           number: number,
         })
       );
-
       setName('');
       setNumber('');
     }
