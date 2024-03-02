@@ -21,14 +21,14 @@ const ContactForm = () => {
   };
 
   const handleNumberChange = e => {
-    // Restrictionarea la cifre, spații, cratime paranteze și + la început:
-
+    // Restrictionarea la cifre, spații, cratime, paranteze, + la început și puncte:
     const newNumberValue = e.target.value.replace(
-      /[^+\d\s()-]|^[\s()-]+|(?<=\d)[+]|\b[+]\b/g,
+      /[^+\d\s().-]|^[\s().-]+|(?<=\d)[+]|\b[+]\b/g,
       ''
     );
     setNumber(newNumberValue);
   };
+  
 
   const handleAddButtonClick = () => {
     // Verificăm dacă numele sau numărul există deja în lista de contacte:
