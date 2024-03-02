@@ -16,7 +16,7 @@ const ContactItem = ({ contact }) => {
   return (
     <div className={styles.item}>
       <li>
-        <strong>{contact.name}</strong>: <br /> {contact.number}
+        <strong>{contact.name}</strong>: <br /> {contact.phone}
       </li>
       <Button action={handleDeleteContact}>Delete</Button>
     </div>
@@ -27,7 +27,7 @@ ContactItem.propTypes = {
   contact: PropTypes.shape({
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    number: PropTypes.string,
+    phone: PropTypes.string,
   }).isRequired,
 };
 
