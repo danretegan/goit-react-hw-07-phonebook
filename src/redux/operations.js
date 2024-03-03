@@ -3,7 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 axios.defaults.baseURL = 'https://65e1984da8583365b316c9c5.mockapi.io';
 
-// Se definește o acțiune asincronă numită 'fetchContacts' folosind createAsyncThunk:
+// Se definește si se exporta o acțiune asincronă numită 'fetchContacts' folosind createAsyncThunk:
 export const fetchContacts = createAsyncThunk(
   'contacts/fetchAll', // Numele acțiunii (în acest caz, 'contacts/fetchAll')
 
