@@ -3,16 +3,23 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 axios.defaults.baseURL = 'https://65e1984da8583365b316c9c5.mockapi.io';
 
+// Se definește o acțiune asincronă numită 'fetchContacts' folosind createAsyncThunk:
 export const fetchContacts = createAsyncThunk(
-  'contacts/fetchAll',
+  'contacts/fetchAll', // Numele acțiunii (în acest caz, 'contacts/fetchAll')
   async (_, thunkAPI) => {
     try {
+      
+      // Se realizează o cerere GET către server pentru a obține datele despre contacte:
       const response = await axios.get('/contacts');
 
       // Afișează datele în consolă:
       console.log('Datele din API:', response.data);
+
+      // Returnează datele obținute de la server:
       return response.data;
     } catch (error) {
+
+      // În caz de eroare, se respinge cu o valoare care include mesajul de eroare:
       return thunkAPI.rejectWithValue(error.message);
     }
   }
