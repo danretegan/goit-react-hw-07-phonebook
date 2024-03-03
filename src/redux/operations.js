@@ -25,6 +25,7 @@ export const fetchContacts = createAsyncThunk(
   }
 );
 
+    // ==== Actiunea asincrona addContact: ====
 export const addContact = createAsyncThunk(
   'contacts/addContact',
   async (contact, thunkAPI) => {
@@ -37,6 +38,7 @@ export const addContact = createAsyncThunk(
   }
 );
 
+// ==== Actiunea asincrona deleteContact: ====
 export const deleteContact = createAsyncThunk(
   'contacts/deleteContact',
   async (contactId, thunkAPI) => {
