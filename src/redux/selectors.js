@@ -20,10 +20,11 @@ export const selectFilteredContacts = createSelector(
 
   // Funcție de filtrare a contactelor:
   (contacts, filter) => {
-
     // Se returneaza o listă de contacte filtrată pe baza șirului de căutare:
     return contacts.filter(contact =>
       contact.name.toLowerCase().includes(filter.toLowerCase())
     );
   }
 );
+
+/** Pentru a obține contactele filtrate, cel mai bine este să folosim `createSelector`. Astfel, codul nostru din componenta `contactsList` va fi mai curat, iar selectorul creat cu ajutorul `createSelector` va fi **memorat**, ceea ce înseamnă că recalculează contactele când se schimbă valorile `state.contacts` sau `state.filter`, dar nu și atunci când se fac modificări în alte părți (independente) ale arborelui. */
